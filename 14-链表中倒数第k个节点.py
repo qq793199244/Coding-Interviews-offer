@@ -16,6 +16,7 @@ class Solution:
         fast = slow = head
         # 快指针比慢指针先走k
         for _ in range(k):
+            # k大于链表长度的情况
             if not fast:
                 return None
             fast = fast.next
