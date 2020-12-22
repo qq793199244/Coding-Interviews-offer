@@ -14,7 +14,7 @@ class Solution:
         if not head or k == 0:
             return None
         fast = slow = head
-        # 快指针比慢指针先走k
+        # 快指针比慢指针先走k-1步
         for _ in range(k):
             # k大于链表长度的情况
             if not fast:
