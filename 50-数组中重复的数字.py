@@ -27,6 +27,30 @@ class Solution:
         return False
 
 
+    '''
+    优化，不需要额外的数组，直接在原数组上面操作；
+    和上面的思路不同的是遇到2时就把A[2]-n,这样当再遇到2时，A[2]<0就可以知道2之前遇到过。
+    因为会修改数组的值，所以在查找位置的时候，如果遇到小于0就先加上n再查找位置。
+    '''
+
+    def duplicate2(self, numbers, duplication):
+        # write code here
+        n = len(numbers)
+        if n == 0:
+            duplication[0] = -1
+            return False
+        for num in numbers:
+            if num < 0:
+                num += n
+            if numbers[num] >= 0:
+                numbers[num] -= n
+            else:
+                duplication[0] = num
+                return True
+        duplication[0] = -1
+        return False
+
+
 if __name__ == '__main__':
     u = Solution()
     duplication = [None]
@@ -36,9 +60,16 @@ if __name__ == '__main__':
     nums4 = [1, 2, 3, 4]
     nums5 = [1, 0, 1, 0, 2, 3, 4]
     nums6 = [2, 1, 3, 0, 4]
-    print(u.duplicate(nums1, duplication), "| duplication[0]=", duplication[0])
-    print(u.duplicate(nums2, duplication), "| duplication[0]=", duplication[0])
-    print(u.duplicate(nums3, duplication), "| duplication[0]=", duplication[0])
-    print(u.duplicate(nums4, duplication), "| duplication[0]=", duplication[0])
-    print(u.duplicate(nums5, duplication), "| duplication[0]=", duplication[0])
-    print(u.duplicate(nums6, duplication), "| duplication[0]=", duplication[0])
+    # print(u.duplicate(nums1, duplication), "| duplication[0]=", duplication[0])
+    # print(u.duplicate(nums2, duplication), "| duplication[0]=", duplication[0])
+    # print(u.duplicate(nums3, duplication), "| duplication[0]=", duplication[0])
+    # print(u.duplicate(nums4, duplication), "| duplication[0]=", duplication[0])
+    # print(u.duplicate(nums5, duplication), "| duplication[0]=", duplication[0])
+    # print(u.duplicate(nums6, duplication), "| duplication[0]=", duplication[0])
+
+    print(u.duplicate2(nums1, duplication), "| duplication[0]=", duplication[0])
+    print(u.duplicate2(nums2, duplication), "| duplication[0]=", duplication[0])
+    print(u.duplicate2(nums3, duplication), "| duplication[0]=", duplication[0])
+    print(u.duplicate2(nums4, duplication), "| duplication[0]=", duplication[0])
+    print(u.duplicate2(nums5, duplication), "| duplication[0]=", duplication[0])
+    print(u.duplicate2(nums6, duplication), "| duplication[0]=", duplication[0])
