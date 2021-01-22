@@ -33,7 +33,7 @@ class Solution:
         for i in range(len(sequence) - 1, -1, -1):
             if sequence[i] > root:
                 return False
-            while (tmp_stack and sequence[i] < tmp_stack[-1]):
+            while tmp_stack and sequence[i] < tmp_stack[-1]:
                 root = tmp_stack.pop()
             tmp_stack.append(sequence[i])
         return True
