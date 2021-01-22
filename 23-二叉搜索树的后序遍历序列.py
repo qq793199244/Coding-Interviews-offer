@@ -14,6 +14,7 @@ class Solution:
     # 时间复杂度O(n^2)：每次递归去掉一个根节点，递归O(n)，每轮递归遍历树中节点O(n)
     # 空间复杂度O(H)，最坏O(n)
     def VerifySquenceOfBST(self, sequence):
+        if not sequence: return False  # 牛客网平台[]算False
         def recur(i, j):
             if i >= j:  # 终止条件：i >= j说明此子树节点数量 <= 1，无需判别正确性，直接返回 True
                 return True
@@ -29,6 +30,7 @@ class Solution:
 
     # 辅助单调栈。时间复杂度O(n)，空间复杂度O(n)
     def VerifySquenceOfBST2(self, sequence):
+        if not sequence: return False  # 牛客网平台[]算False
         tmp_stack, root = [], float('inf')
         for i in range(len(sequence) - 1, -1, -1):
             if sequence[i] > root:
