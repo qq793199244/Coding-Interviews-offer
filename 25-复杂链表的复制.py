@@ -79,9 +79,17 @@ if __name__ == '__main__':
     # p1 = [[7, None], [13, 0], [11, 4], [10, 2], [1, 0]]
     pHead1 = RandomListNode(7)
     n13 = RandomListNode(13)
-    n11 = RandomListNode(13)
-    n10 = RandomListNode(13)
-    n1 = RandomListNode(13)
-   
+    n11 = RandomListNode(11)
+    n10 = RandomListNode(10)
+    n1 = RandomListNode(1)
+    n_null = RandomListNode(None)
+    pHead1.next, pHead1.random = n13, n_null
+    n13.next, n13.random = n11, pHead1
+    n11.next, n11.random = n10, n1
+    n10.next, n10.random = n1, n11
+    n1.next, n1.random = n_null, pHead1
 
-    # p4 = []
+    res = u.Clone3(pHead1)
+    while res:
+        print(res.label,'|',res.random.label, end='  ----→  ')
+        res = res.next
