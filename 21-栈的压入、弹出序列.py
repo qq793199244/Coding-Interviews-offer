@@ -10,7 +10,7 @@
 
 
 class Solution:
-    # 辅助栈模拟
+    # 辅助栈模拟。时间复杂度O(n)，空间复杂度O(n)
     def IsPopOrder(self, pushV, popV):
         tmp_stack = []
         i = 0

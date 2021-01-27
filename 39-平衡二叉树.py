@@ -27,7 +27,7 @@ class Solution:
         return abs(depth(pRoot.left) - depth(pRoot.right)) <= 1 and \
                self.IsBalanced_Solution(pRoot.left) and self.IsBalanced_Solution(pRoot.right)
 
-    # 后序遍历 + 剪枝 (自底向上)。时间复杂度O(n)，空间复杂度O(n)
+    # 后序遍历 + 剪枝 (自底向上)。时间复杂度O(n)，空间复杂度O(树的高度)
     def IsBalanced_Solution2(self, pRoot):
         def recur(root):
             if not root:    # root等于0时，该节点符合要求，返回其深度0，而不返回-1
