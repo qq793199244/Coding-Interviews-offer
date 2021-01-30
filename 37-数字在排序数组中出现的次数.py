@@ -19,35 +19,43 @@ class Solution:
     # 二分查找。时间复杂度O(logn)，空间复杂度O(1)
     def GetNumberOfK2(self, data, k):
         n = len(data)
-        bound_l, bount_r = 0, n-1
-        # 寻找上界
+        if n == 0:
+            return 0
+        # 找左边界
         left, right = 0, n - 1
-        while left < right:
+        while left <= right:
             mid = (left + right) // 2
             if data[mid] < k:
                 left = mid + 1
             else:
-                right = mid
-        bound_l = left
-
-        # 寻找下界
-        left, right = 0, n - 1
-        while left < right:
+                right = mid - 1
+        bound_l = right
+        if left < 0 and data[left] != k:
+            return 0
+        # 找右边界
+        right = n - 1
+        while left <= right:
             mid = (left + right) // 2
             if data[mid] <= k:
                 left = mid + 1
             else:
-                right = mid
-        bound_r = right
-        return bound_r - bound_l
-
+                right = mid - 1
+        bound_r = left
+        return bound_r - bound_l - 1
 
 
 if __name__ == '__main__':
     u = Solution()
     data1 = []
     data2 = [1, 2, 3, 3, 3, 3, 4, 5]
+    data3 = [1, 2, 3, 3, 3, 3]
+    data4 = [1, 1, 1, 1, 1, 2, 3, 4]
     print(u.GetNumberOfK1(data1, 1))
     print(u.GetNumberOfK1(data2, 3))
+    print(u.GetNumberOfK1(data3, 3))
+    print(u.GetNumberOfK1(data4, 1))
+
     print(u.GetNumberOfK2(data1, 1))
     print(u.GetNumberOfK2(data2, 3))
+    print(u.GetNumberOfK2(data3, 3))
+    print(u.GetNumberOfK2(data4, 1))
