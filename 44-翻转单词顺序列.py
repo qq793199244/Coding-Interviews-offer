@@ -16,9 +16,10 @@ class Solution:
     # 2.每确定一个单词的边界，则将其添加至单词列表 res ；
     # 3.最终，将单词列表拼接为字符串，并返回即可。
     def ReverseSentence1(self, s):
-        s = s.strip()  # 删除首尾空格
-        n = len(s)
-        i = j = n - 1
+        # 牛客网平台上要考虑s=两个空格
+        if s.strip() == '':
+            return s
+        i = j = len(s) - 1
         res = []
         while i >= 0:
             # 搜索首个空格
@@ -34,24 +35,30 @@ class Solution:
 
     # 分割+倒序。面试时不建议用。时间复杂度O(n)，空间复杂度O(n)
     def ReverseSentence2(self, s):
-        s = s.strip()  # 删除首尾空格
-        strs = s.split()  # 分割字符串
-        strs.reverse()  # 翻转单词列表
-        return ' '.join(strs)
+        if s.strip() == '':
+            return s
+        new_s = ''
+        tmp = s.split(' ')
+        for i in range(len(tmp) - 1, -1, -1):
+            new_s += tmp[i] + ' '
+        return new_s[:-1]
 
 
 if __name__ == '__main__':
     u = Solution()
     s1 = ""
     s2 = " "
-    s3 = "nowcoder. a am I"
-    s4 = "student. a am I"
+    s3 = "  "
+    s4 = "nowcoder. a am I"
+    s5 = "student. a am I"
     print(u.ReverseSentence1(s1))
     print(u.ReverseSentence1(s2))
     print(u.ReverseSentence1(s3))
     print(u.ReverseSentence1(s4))
+    print(u.ReverseSentence1(s5))
 
     print(u.ReverseSentence2(s1))
     print(u.ReverseSentence2(s2))
     print(u.ReverseSentence2(s3))
     print(u.ReverseSentence2(s4))
+    print(u.ReverseSentence2(s5))
