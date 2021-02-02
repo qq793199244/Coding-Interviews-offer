@@ -31,6 +31,30 @@ class Solution:
         n = n % len(s)
         return s[n:] + s[:n]
 
+    def LeftRotateString4(self, s, n):
+        '''
+        假设字符串abcdef，n=3，
+        设X=abc，Y=def，所以字符串可以表示成XY，问如何求得YX。
+        假设X的翻转为XT，XT=cba，
+        同理YT=fed，那么YX=(XTYT)T
+        '''
+        s_len = len(s)
+        if s_len == 0 or n % s_len == 0:
+            return s
+
+        def reverse(str, begin, end):
+            while begin <= end:
+                str[begin], str[end] = str[end], str[begin]
+                begin += 1
+                end -= 1
+            return str
+
+        s = list(s)
+        reverse(s, 0, (n - 1) % s_len)
+        reverse(s, n % s_len, s_len - 1)
+        reverse(s, 0, s_len - 1)
+        return ''.join(s)
+
 
 if __name__ == '__main__':
     u = Solution()
@@ -39,11 +63,19 @@ if __name__ == '__main__':
     print(u.LeftRotateString1(s1, 3))
     print(u.LeftRotateString1(s2, 3))
     print(u.LeftRotateString1(s2, 12))
+    print(u.LeftRotateString1(s2, 0))
 
     print(u.LeftRotateString2(s1, 3))
     print(u.LeftRotateString2(s2, 3))
     print(u.LeftRotateString2(s2, 12))
+    print(u.LeftRotateString2(s2, 0))
 
     print(u.LeftRotateString3(s1, 3))
     print(u.LeftRotateString3(s2, 3))
     print(u.LeftRotateString3(s2, 12))
+    print(u.LeftRotateString3(s2, 0))
+
+    print(u.LeftRotateString4(s1, 3))
+    print(u.LeftRotateString4(s2, 3))
+    print(u.LeftRotateString4(s2, 12))
+    print(u.LeftRotateString4(s2, 0))
