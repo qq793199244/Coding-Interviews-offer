@@ -22,7 +22,7 @@ class Solution:
                 dp[i] = max(dp[i], max((i - j) * j, j * dp[i - j]))
         return dp[-1]
 
-    # 动态规划优化。时间复杂度O(n)，空间复杂度O(1s)
+    # 动态规划优化。时间复杂度O(n)，空间复杂度O(1)
     def cutRope2(self, number):
         dp = [0, 1, 1]
         for i in range(3, number + 1):
