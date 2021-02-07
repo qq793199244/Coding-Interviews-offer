@@ -17,16 +17,21 @@ class ListNode:
 class Solution:
     # 时间复杂度O(n)，空间复杂度O(1)
     def deleteDuplication(self, pHead):
-        if pHead is None or pHead.next is None:
-            return pHead
-        if pHead.val == pHead.next.val:
-            tmp = pHead.next
-            while tmp and tmp.val == pHead.val:
-                tmp = tmp.next
-            return self.deleteDuplication(tmp)
-        else:
-            pHead.next = self.deleteDuplication(pHead.next)
-            return pHead
+        # 有可能第一个节点就是重复的
+        dummy = ListNode(0)
+        dummy.next = pHead
+        pre, cur = None, dummy
+        while cur:
+            pre = cur
+            cur = cur.next
+            # 判断指针的下一个值是否与当前值相等
+            while cur and cur.next and cur.val == cur.next.val:
+                tmp = cur.val
+                # 和当前值tmp相等的结点都被抛弃
+                while cur and tmp == cur.val:
+                    cur = cur.next
+                pre.next = cur
+        return dummy.next
 
 
 if __name__ == '__main__':
