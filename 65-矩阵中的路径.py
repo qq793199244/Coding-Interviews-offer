@@ -22,18 +22,19 @@
 
 
 class Solution:
-    def hasPath(self, matrix, words):
+    def hasPath(self, matrix, word):
         # @param matrix char字符型二维数组
         # @param word string字符串
         # @return bool布尔型
         def dfs(i, j, k):
-            if not 0 <= i < len(matrix) or not 0 <= j < len(matrix[0]) or matrix[i][j] != words[k]:
+            # 当前元素在矩阵 matrix 中的行列索引 i 和 j ，当前目标字符在 words 中的索引 k
+            if not 0 <= i < len(matrix) or not 0 <= j < len(matrix[0]) or matrix[i][j] != word[k]:
                 return False
-            if k == len(words) - 1: return True
+            if k == len(word) - 1: return True
             matrix[i][j] = ''
             res = dfs(i + 1, j, k + 1) or dfs(i - 1, j, k + 1) or \
                   dfs(i, j + 1, k + 1) or dfs(i, j - 1, k + 1)
-            matrix[i][j] = words[k]
+            matrix[i][j] = word[k]
             return res
 
         for i in range(len(matrix)):
