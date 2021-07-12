@@ -3,6 +3,7 @@
 例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
 '''
 class Solution:
+    # 时间复杂度O(n)，空间复杂度O(n)
     def replaceSpace(self, s):
         if not s:
             return s
